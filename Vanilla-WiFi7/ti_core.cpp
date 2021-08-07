@@ -1,12 +1,5 @@
-// Haptics-Video transmission by each STA in separate ACs with video frame generation happening at 60Hz.
-// Currently defining AC_HA as AIFSN=1, while for AC_VI and AC_VO AIFSN=2
 // OFDMA on DL and UL in batches of 4 or 2 or 1 with highest-first Tx.
 
-// Commands for synchronizing with Github
-// git add 80211ax-TI-OFDMA-Win
-// git commit -m "comment"
-// git push
-// git status
 
 #include <stdio.h>
 #include <stdlib.h>     /* srand, rand */
@@ -34,13 +27,6 @@
 #define ETHERNET_FRAME_LENGTH    (1500*8) //length in bits
 #define MAX_SIMULATION_TIME_US   20000000 //20 sec
 #define PACKET_SIZE_HA				 2500
-// Sampling rates -- H: 1kHz, V: 60Hz
-//  V (kB) 	H (B)     Overall DR (Mbps)
-// 48.75kB	200B		   25
-// 38.3kB	200B		   20
-// 27.9kB	200B		   15
-// 17.5kB   200B 	       10
-// 7.08kB   200B	        5
 
 
 #define RETRY_COUNT_HA				 8 //4
