@@ -903,11 +903,13 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 					}
 
 					// remove sent STAs and go back to DL_OFDMA after first batch if time left
-					for (auto it=dl_sampleCount.begin(); it!=dl_sampleCount.end(); ++it){
+					for (auto it=dl_sampleCount.begin(); it!=dl_sampleCount.end(); ){
 						std::vector<int>::iterator temp;
 						temp = find (stas_dl.begin(), stas_dl.end(), it->second);
 						if (temp!=stas_dl.end()){
 							dl_sampleCount.erase(it);
+						} else {
+							it++;
 						}
 					}
 					stas_dl.clear();
@@ -1056,11 +1058,13 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 						}
 
 						// remove sent STAs and go back to DL_OFDMA after first batch if time left
-						for (auto it=ul_sampleCount.begin(); it!=ul_sampleCount.end(); ++it){
+						for (auto it=ul_sampleCount.begin(); it!=ul_sampleCount.end(); ){
 							std::vector<int>::iterator temp;
 							temp = find (stas_ul.begin(), stas_ul.end(), it->second);
 							if (temp!=stas_ul.end()){
 								ul_sampleCount.erase(it);
+							} else {
+								it++;
 							}
 						}
 						stas_ul.clear();
