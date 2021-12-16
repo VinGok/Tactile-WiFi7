@@ -960,7 +960,7 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 						std::vector<int>::iterator temp;
 						temp = find (stas_dl.begin(), stas_dl.end(), it->second);
 						if (temp!=stas_dl.end()){
-							it = dl_sampleCount.erase(it); // FIXME: erase invalidates it, resulting in undefined behavior when performing ++it
+							it = dl_sampleCount.erase(it);
 						} else {
 							++it;
 						}
