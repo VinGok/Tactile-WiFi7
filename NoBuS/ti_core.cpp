@@ -1492,7 +1492,7 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 	global_file << PACKET_SIZE_HA << "\t" << nRAStas << "\t" << averg << "\t" <<  STA_dropped_ha*1.0/STA_generated_ha << "\t" <<
 			(ampdu_sta_mu_HA+ampdu_sta_su_HA)*1.0/numaccess << "\t" << numaccess_su*1.0/nRAStas << "\t" << numaccess_mu*1.0/nRAStas << "\t";
 
-	temp = std::string("/home/vineet/GitRepo/HighFive-NoBuS/ResultsFiles/Haptic/STA-") + std::to_string(nRAStas)
+	temp = std::string("./Haptic/STA-") + std::to_string(nRAStas)
 			+ "-" + std::to_string(PACKET_SIZE_HA) + std::string(".txt");
 	file.open(temp);
     for (const auto &e : delays_allSta)
@@ -1573,7 +1573,7 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 
 	global_file << APdelavg << "\t" <<  (APSta.dropped_ha+APSta.dropped_nobus)*1.0/APSta.generated_ha << "\t" << ampdu_ap_HA*1.0/(APSta.nSuccAccess_HA) << "\t" <<
 			APSta.numAccess << "\t" << numCollisions*1.0/(nRAStas+1) << "\n";
-	temp = std::string("/home/vineet/GitRepo/HighFive-NoBuS/ResultsFiles/Haptic/AP-") + std::to_string(nRAStas)
+	temp = std::string("./AP-") + std::to_string(nRAStas)
 		+ "-" + std::to_string(PACKET_SIZE_HA) + std::string(".txt");
 	file.open(temp);
 	for (const auto &e : APSta.delaysList.HA)
