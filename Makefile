@@ -4,7 +4,7 @@ all::	$(addprefix .all.,$(DIRS))
 run::	$(addprefix .run.,$(DIRS))
 clean::	$(addprefix .clean.,$(DIRS))
 debug::	$(addprefix .debug.,$(DIRS))
-clean-aux:: $(addprefix .clean-aux.,$(DIRS))
+clean-results:: $(addprefix .clean-results.,$(DIRS))
 
 .all.%:
 	make -C ./$*
@@ -23,5 +23,5 @@ clean-aux:: $(addprefix .clean-aux.,$(DIRS))
 	make -C ./$* clean
 	rm -rf .make
 
-.clean-aux.%:
-	make -C ./$* clean-aux
+.clean-results.%:
+	make -C ./$* clean-results

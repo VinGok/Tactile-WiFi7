@@ -5,7 +5,7 @@ CPPFILES:=$(wildcard ./*.cpp)
 DEBUGFILE:=$(OUTPUTFILE)-debug
 DEBUGGER=gdb
 
-.PHONY: clean run debug clean-aux run-debug
+.PHONY: clean run debug clean-results run-debug
 
 $(OUTPUTFILE): $(CPPFILES)
 	mkdir -p "bin"
@@ -30,6 +30,6 @@ run-debug: $(DEBUGFILE)
 	mkdir -p $(rundir)
 	cd $(rundir) && $(DEBUGGER) $(DEBUGFILE)
 
-clean-aux:
+clean-results:
 	rm -f $(filter-out %Readme.txt,$(wildcard ./*.txt ./bin/*.txt))
 	rm -rf $(wildcard ResultsFiles/run-*)
