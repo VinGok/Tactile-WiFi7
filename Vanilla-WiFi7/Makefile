@@ -1,9 +1,6 @@
-CC:=g++
-FLAGS:=-Wall -Wextra -Wpedantic #-Werror
 OUTPUTFILE:=$(abspath ./bin/$(shell basename $(CURDIR)))
 CPPFILES:=$(wildcard ./*.cpp)
 DEBUGFILE:=$(OUTPUTFILE)-debug
-DEBUGGER=gdb
 
 .PHONY: clean run debug clean-results run-debug
 

@@ -1,3 +1,8 @@
+.EXPORT_ALL_VARIABLES:
+CC:=g++
+FLAGS:=-Wall -Wextra -Wpedantic #-Werror
+DEBUGGER=gdb
+
 DIRS = $(patsubst %/Makefile,%,$(shell echo */Makefile))
 
 all::	$(addprefix .all.,$(DIRS))
