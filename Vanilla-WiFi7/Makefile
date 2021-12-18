@@ -1,4 +1,4 @@
-CC?=g++
+COMPILER?=g++
 FLAGS?=-Wall -Wextra -Wpedantic -Werror
 DEBUGGER?=gdb
 
@@ -10,7 +10,7 @@ DEBUGFILE:=$(OUTPUTFILE)-debug
 
 $(OUTPUTFILE): $(CPPFILES)
 	mkdir -p "bin"
-	$(CC) $(FLAGS) $(CPPFILES) -o $(OUTPUTFILE)
+	$(COMPILER) $(FLAGS) $(CPPFILES) -o $(OUTPUTFILE)
 
 run: rundir=ResultsFiles/run-$(shell date +"%Y-%m-%d-%T")
 run: $(OUTPUTFILE)
@@ -24,7 +24,7 @@ debug: $(DEBUGFILE)
 
 $(DEBUGFILE): $(CPPFILES)
 	mkdir -p "bin"
-	$(CC) -g $(FLAGS) $(CPPFILES) -o $(DEBUGFILE)
+	$(COMPILER) -g $(FLAGS) $(CPPFILES) -o $(DEBUGFILE)
 
 run-debug: rundir=ResultsFiles/run-debug-$(shell date +"%Y-%m-%d-%T")
 run-debug: $(DEBUGFILE)

@@ -1,5 +1,5 @@
 .EXPORT_ALL_VARIABLES:
-CC:=g++
+COMPILER:=g++
 FLAGS:=-Wall -Wextra -Wpedantic #-Werror
 DEBUGGER=gdb
 
