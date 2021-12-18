@@ -1,3 +1,7 @@
+CC?=g++
+FLAGS?=-Wall -Wextra -Wpedantic -Werror
+DEBUGGER?=gdb
+
 OUTPUTFILE:=$(abspath ./bin/$(shell basename $(CURDIR)))
 CPPFILES:=$(wildcard ./*.cpp)
 DEBUGFILE:=$(OUTPUTFILE)-debug
