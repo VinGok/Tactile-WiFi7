@@ -955,14 +955,14 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 						}
 					}
 
-
-
 					// remove sent STAs and go back to DL_OFDMA after first batch if time left
-					for (auto it=dl_sampleCount.begin(); it!=dl_sampleCount.end(); ++it){
+					for (auto it=dl_sampleCount.begin(); it!=dl_sampleCount.end(); ){
 						std::vector<int>::iterator temp;
 						temp = find (stas_dl.begin(), stas_dl.end(), it->second);
 						if (temp!=stas_dl.end()){
-							dl_sampleCount.erase(it);
+							it = dl_sampleCount.erase(it);
+						} else {
+							++it;
 						}
 					}
 					stas_dl.clear();
@@ -1168,11 +1168,13 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 						}
 
 						// remove sent STAs and go back to DL_OFDMA after first batch if time left
-						for (auto it=ul_sampleCount.begin(); it!=ul_sampleCount.end(); ++it){
+						for (auto it=ul_sampleCount.begin(); it!=ul_sampleCount.end(); ){
 							std::vector<int>::iterator temp;
 							temp = find (stas_ul.begin(), stas_ul.end(), it->second);
 							if (temp!=stas_ul.end()){
-								ul_sampleCount.erase(it);
+								it = ul_sampleCount.erase(it);
+							} else {
+								it++;
 							}
 						}
 						stas_ul.clear();
@@ -1611,7 +1613,7 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 	global_file << PACKET_SIZE_HA << "\t" << nRAStas << "\t" << averg << "\t" <<  STA_dropped_ha*1.0/STA_generated_ha << "\t" <<
 			(ampdu_sta_mu_HA+ampdu_sta_su_HA)*1.0/numaccess << "\t";
 
-	temp = std::string("/home/vineet/GitRepo/HighFive-BuS/ResultsFiles/Haptic/STA-") + std::to_string(nRAStas)
+	temp = std::string("./Haptic/STA-") + std::to_string(nRAStas)
 			+ "-" + std::to_string(PACKET_SIZE_HA) + std::string(".txt");
 	file.open(temp);
     for (const auto &e : delays_allSta)
@@ -1690,7 +1692,7 @@ struct wlan_result simulate_wlan(const int bw, int nRAStas, int mcs) {
 
 	global_file << APdelavg << "\t" <<  APSta.dropped_ha*1.0/APSta.generated_ha << "\t" << ampdu_ap_HA*1.0/(APSta.nSuccAccess_HA) << "\n";
 
-	temp = std::string("/home/vineet/GitRepo/HighFive-BuS/ResultsFiles/Haptic/AP-") + std::to_string(nRAStas)
+	temp = std::string("./AP-") + std::to_string(nRAStas)
 		+ "-" + std::to_string(PACKET_SIZE_HA) + std::string(".txt");
 	file.open(temp);
 	for (const auto &e : APSta.delaysList.HA)
